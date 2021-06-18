@@ -1,0 +1,13 @@
+.contact {
+    display: flex;
+    flex-flow: column wrap;
+    font-family: 'Yeseva One', cursive;
+    justify-content: center;
+}
+
+.contact__info {
+    display: flex;
+    justify-content: center;
+    font-family: 'Yeseva One', cursive;
+
+}
