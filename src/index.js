@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { DockDynasty } from "./components/Dock-Dynasty"
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DockDynasty />
   </React.StrictMode>,
   document.getElementById('root')
 );
