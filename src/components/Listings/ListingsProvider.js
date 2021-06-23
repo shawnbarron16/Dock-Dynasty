@@ -28,9 +28,14 @@ export const ListingsProvider = (props) => {
         })
         .then(getListings)
     }
+
+    const getListingById = listingId => {
+        return fetch(`http://localhost:8088/boatListing/${listingId}`)
+            .then(res => res.json())
+    }
     return (
         <ListingContext.Provider value ={{
-            listings, getListings, addListings, deleteListing
+            listings, getListings, addListings, deleteListing, getListingById
         }}>
             {props.children}
         </ListingContext.Provider>

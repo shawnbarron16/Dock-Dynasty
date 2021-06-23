@@ -19,9 +19,6 @@ export const NavBar = () => {
                     <Link className="navBar__link" to="/Profile">Profile</Link>
                 </ul>
             </ul>
-            <div>
-                <img className="logo" src="/Dock-dynasty.png" alt="not found"></img>
-            </div>
         </>
     )
 }

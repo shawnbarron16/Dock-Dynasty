@@ -7,6 +7,7 @@ import { UserProvider } from "./Profile/ProfileProvider";
 import { NavBar } from "./Nav/NavBar";
 import { FooterBar } from "./Nav/FooterBar";
 import { Contact } from "./Conatact";
+import { IndividualListing } from "./Listings/IndividualListing";
 
 export const DockDynasty = () => {
   return (
@@ -20,6 +21,9 @@ export const DockDynasty = () => {
                      </Route>
                      <Route exact path="/Contact">
                         <Contact />
+                     </Route>
+                     <Route exact path="/listings/:listingId(\d+)">
+                       <IndividualListing />
                      </Route>
                 </BoatProvider>
              </ListingsProvider>
