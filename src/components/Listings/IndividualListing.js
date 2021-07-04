@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ListingContext } from "./ListingsProvider";
 import { BoatContext } from "../Boats/BoatsProvider";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 //A component that handles the viewing of a singular listing with expanded information
 export const IndividualListing = () => {
@@ -10,6 +10,7 @@ export const IndividualListing = () => {
   const [listing, setListing] = useState({});
   const [boat, setBoat] = useState([]);
   const { listingId } = useParams();
+  const history = useHistory()
 
   useEffect(() => {
     console.log("Getting Individual Listing");
@@ -20,6 +21,10 @@ export const IndividualListing = () => {
   useEffect(() => {
     getBoatById(listing.boatId).then((data) => setBoat(data));
   }, [listing]);
+
+  const handleClickRent = () => {
+    history.push("/")
+  }
 
   return (
     <>
@@ -45,7 +50,7 @@ export const IndividualListing = () => {
           {listing.price}
         </article>
         <article className="singleListing__info__rent">
-          <button>RENT</button>
+          <button onClick={handleClickRent}>RENT</button>
         </article>
       </section>
     </>

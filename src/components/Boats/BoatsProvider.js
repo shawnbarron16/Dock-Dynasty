@@ -33,9 +33,20 @@ export const BoatProvider = (props) => {
         return fetch(`http://localhost:8088/boats/${boatId}`)
             .then(res => res.json())
     }
+
+    const updateBoat = boatId => {
+        return fetch(`http://localhost:8088/boats/${boatId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(boatId)
+        })
+        .then(getBoats)
+    }
     return (
         <BoatContext.Provider value ={{
-            boats, getBoats, addBoats, deleteBoat, getBoatById
+            boats, getBoats, addBoats, deleteBoat, getBoatById, updateBoat
         }}>
             {props.children}
         </BoatContext.Provider>

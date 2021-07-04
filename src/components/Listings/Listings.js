@@ -25,8 +25,8 @@ export const Listings = () => {
           <div className="listings__listing" key={listing.id} id={`listing--${listing.id}`}
           style={{display: "flex", flexFlow: "column wrap", borderColor: "black", borderStyle: "solid", 
           borderWidth: 2, marginLeft: 10, marginRight: 10, maxWidth:300, maxHeight:400, justifyContent: "space-around"}}>
-            <img className="listing__image" src={thisBoat.pictureURL} alt="" style={{height: 250, width: 300 }}></img>
-            {thisBoat.description}
+            <img className="listing__image" src={thisBoat && thisBoat.pictureURL} alt="" style={{height: 250, width: 300 }}></img>
+            {thisBoat && thisBoat.description}
             <button onClick={ () => {history.push(`/listings/${listing.id}`)}}>See More</button>
           </div>
         );
