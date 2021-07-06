@@ -3,6 +3,7 @@ import { UserContext } from "./ProfileProvider";
 import { BoatContext } from "../Boats/BoatsProvider";
 import { ListingContext } from "../Listings/ListingsProvider";
 import { useHistory } from "react-router";
+import "./ProfileStyle.css"
 
 export const UserProfile = () => {
   const { getUserById } = useContext(UserContext);
@@ -20,22 +21,22 @@ export const UserProfile = () => {
   }, []);
 
   return (
-    <section className="user_boats">
+    <section className="user">
       <div>
-        <h2>
+        <h2 className="user__name">
           {user.name}
         </h2>
       </div>
       <div>
       </div>
-      <div>
+      <div className="user__listings">
         <h2>Your Listings</h2>
         {listings.map((listing) => {
           let thisBoatId = parseInt(listing.boatId);
           let thisBoat = boats.find((boat) => boat.id === thisBoatId);
           return (
             <div
-              className="listings__listing"
+              className="user__listing"
               key={listing.id}
               id={`listing--${listing.id}`}
               style={{

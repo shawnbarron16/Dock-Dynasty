@@ -1,0 +1,14 @@
+.user__listings {
+    display: flex;
+    margin: 8px
+};
+
+.listing__image {
+    max-width: 50px;
+    max-height: 50px;
+};
+
+.user__name {
+    display: flex;
+    justify-content: center;
+}

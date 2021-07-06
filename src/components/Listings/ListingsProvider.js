@@ -35,13 +35,13 @@ export const ListingsProvider = (props) => {
             .then(res => res.json())
     }
 
-    const updateListing = listingId => {
-        return fetch(`http://localhost8088/boatListing/${listingId}`,{
+    const updateListing = listing => {
+        return fetch(`http://localhost:8088/boatListing/${listing.id}`,{
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify(listingId) 
+            body:JSON.stringify(listing)
         })
         .then(getListings)
     }

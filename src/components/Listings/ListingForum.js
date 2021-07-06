@@ -5,26 +5,18 @@ import { BoatContext } from "../Boats/BoatsProvider";
 
 export const ListingForum = () => {
   console.log("Rendering Listing Forum");
-  const { listings, getListings, addListings, updateListing } = useContext(ListingContext);
+  const { listings, getListings, addListings, updateListing, getListingById } = useContext(ListingContext);
   const { boats, getBoats } = useContext(BoatContext);
   const history = useHistory();
-  const currentUserId = localStorage.getItem("dd_user");
-  let currentUsersBoatsArray = [];
   const {listingId} = useParams()
+  const [isLoading, setIsLoading] = useState(true);
 
-  const setCurrentUserBoatArray = () => {
-      for(const boat of boats) {
-          if(boat.owner === currentUserId) {
-              currentUsersBoatsArray.push(boat)
-          }
-      }
-  }
-
-  useEffect(() => {
+  /*useEffect(() => {
     getListings()
     .then(() => getBoats())
-    .then(() => setCurrentUserBoatArray())
+    .then(() => getListingById(parseInt(listingId)))
   }, []);
+  */
 
 
   const [listing, setListing] = useState({
@@ -41,7 +33,7 @@ export const ListingForum = () => {
     setListing(newListing);
   };
 
-  const handleClickSaveInput = (evt) => {
+  const handleClickSaveInput = () => {
     
     const newBoatId = listing.boatId;
     const newPrice = listing.price;
@@ -49,15 +41,17 @@ export const ListingForum = () => {
     if (newBoatId === null || newPrice === null) {
       window.alert("Please Select a Boat and Set a Price");
     } else {
+      setIsLoading(true)
       if(listingId){
+        debugger
       const newListing = {
-        id: listingId,
+        id: parseInt(listingId),
         boatId: parseInt(newBoatId),
         dateListed: "",
-        price: newPrice,
+        price: parseInt(newPrice),
         renterId: 0,
       };
-      updateListing(newListing).then(() => history.push("/"));
+      updateListing(newListing).then(history.push("/"))
     } else {
       const newListing = {
         boatId: parseInt(newBoatId),
@@ -65,7 +59,7 @@ export const ListingForum = () => {
         price: newPrice,
         renterId: 0,
       };
-      addListings(newListing).then(() => history.push("/"));
+      addListings(newListing).then(history.push("/"))
     }
   }
   };
