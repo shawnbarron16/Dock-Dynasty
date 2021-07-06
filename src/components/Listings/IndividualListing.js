@@ -6,7 +6,7 @@ import { useParams, useHistory } from "react-router-dom";
 //A component that handles the viewing of a singular listing with expanded information
 export const IndividualListing = () => {
   const { getListingById } = useContext(ListingContext);
-  const { getBoatById } = useContext(BoatContext);
+  const { boats, getBoatById, updateBoat } = useContext(BoatContext);
   const [listing, setListing] = useState({});
   const [boat, setBoat] = useState([]);
   const { listingId } = useParams();
@@ -15,7 +15,6 @@ export const IndividualListing = () => {
   useEffect(() => {
     console.log("Getting Individual Listing");
     getListingById(listingId).then((data) => setListing(data));
-    console.log(listing);
   }, []);
 
   useEffect(() => {
@@ -23,6 +22,8 @@ export const IndividualListing = () => {
   }, [listing]);
 
   const handleClickRent = () => {
+
+
     history.push("/")
   }
 
