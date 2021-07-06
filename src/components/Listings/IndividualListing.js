@@ -44,7 +44,7 @@ export const IndividualListing = () => {
       </section>
       <section className="singleListing__info">
         <article className="singleListing__info__date">
-          {listing.dateListed}
+          Listed on: {listing.dateListed}
         </article>
         <article className="singleListing__info__price">
           {listing.price}

@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { DockDynasty } from "./components/Dock-Dynasty"
-
-localStorage.setItem("gg_user", 1);
+import { DockDynasty } from "../src/components/Dock-Dynasty"
 
   ReactDOM.render(
     <React.StrictMode>
