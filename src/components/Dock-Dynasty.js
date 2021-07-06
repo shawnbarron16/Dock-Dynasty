@@ -1,41 +1,30 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import { ListingsProvider } from "./Listings/ListingsProvider";
-import { Listings } from "./Listings/Listings";
-import { BoatProvider } from "./Boats/BoatsProvider";
-import { NavBar } from "./Nav/NavBar";
-import { FooterBar } from "./Nav/FooterBar";
-import { Contact } from "./Conatact";
-import { IndividualListing } from "./Listings/IndividualListing";
-import { BoatForum } from "./Boats/BoatForum";
-import { UserProvider } from "./auth/UsersProvider";
+import { Route, Redirect } from "react-router-dom";
+import { ApplicationViews } from "./Application-Views";
+import { Login } from "./auth/Login";
+import { Register } from "./auth/Register";
 
-export const DockDynasty = () => {
+export const DockDynasty = () => (
+  <>
+    <Route
+      render={() => {
+        if (localStorage.getItem("dd_user")) {
+          return (
+            <>
+              <ApplicationViews />
+            </>
+          );
+        } else {
+          return <Redirect to="/login" />;
+        }
+      }}
+    />
 
-  return (
-    <>
-      <NavBar />
-        <UserProvider>
-            <ListingsProvider>
-                <BoatProvider>
-                    <Route exact path="/">
-                         <Listings />
-                     </Route>
-                     <Route exact path="/Contact">
-                        <Contact />
-                     </Route>
-                     <Route exact path="/listings/:listingId(\d+)">
-                       <IndividualListing />
-                     </Route>
-                     <Route exact path="/AddABoat">
-                       <BoatForum />
-                     </Route>
-                     <Route exact path="/AddAListing">
-                     </Route>
-                </BoatProvider>
-             </ListingsProvider>
-         </UserProvider>
-      <FooterBar />
-    </>
-  );
-};
+    <Route path="/login">
+      <Login />
+    </Route>
+    <Route path="/register">
+      <Register />
+    </Route>
+  </>
+);

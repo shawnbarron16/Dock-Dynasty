@@ -9,7 +9,7 @@ export const BoatForum = () => {
 
     useEffect(() => {
         getBoats()
-    })
+    }, [])
 
     const [boat, setBoat] = useState({
         id: 0,
