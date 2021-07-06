@@ -18,7 +18,8 @@ export const ListingsProvider = (props) => {
                 "Content-type":"application/json"
             },
             body: JSON.stringify(listingObj)
-        })
+        }) 
+        .then(response=>response.json())
         .then(getListings)
     }
 
@@ -33,9 +34,20 @@ export const ListingsProvider = (props) => {
         return fetch(`http://localhost:8088/boatListing/${listingId}`)
             .then(res => res.json())
     }
+
+    const updateListing = listingId => {
+        return fetch(`http://localhost8088/boatListing/${listingId}`,{
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify(listingId) 
+        })
+        .then(getListings)
+    }
     return (
         <ListingContext.Provider value ={{
-            listings, getListings, addListings, deleteListing, getListingById
+            listings, getListings, addListings, deleteListing, getListingById, updateListing
         }}>
             {props.children}
         </ListingContext.Provider>

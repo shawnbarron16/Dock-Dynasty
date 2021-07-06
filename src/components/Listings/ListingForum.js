@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { ListingContext } from "./ListingsProvider";
 import { BoatContext } from "../Boats/BoatsProvider";
 
 export const ListingForum = () => {
   console.log("Rendering Listing Forum");
-  const { listings, getListings, addListings } = useContext(ListingContext);
+  const { listings, getListings, addListings, updateListing } = useContext(ListingContext);
   const { boats, getBoats } = useContext(BoatContext);
   const history = useHistory();
-  const currentUserId = localStorage.getItem("gg_user");
+  const currentUserId = localStorage.getItem("dd_user");
   let currentUsersBoatsArray = [];
+  const {listingId} = useParams()
 
   const setCurrentUserBoatArray = () => {
       for(const boat of boats) {
@@ -20,20 +21,18 @@ export const ListingForum = () => {
   }
 
   useEffect(() => {
-    getListings();
-    getBoats()
+    getListings()
+    .then(() => getBoats())
+    .then(() => setCurrentUserBoatArray())
   }, []);
 
-  useEffect(() => {
-      setCurrentUserBoatArray()
-  }, [])
 
   const [listing, setListing] = useState({
-    id: 0,
+    id: "",
     boatId: 0,
     dateListed: "",
-    price: 0,
-    renterId: 0,
+    price: "",
+    renterId: "",
   });
 
   const handleControlledInputChange = (evt) => {
@@ -43,23 +42,32 @@ export const ListingForum = () => {
   };
 
   const handleClickSaveInput = (evt) => {
-    evt.preventDefault();
-
+    
     const newBoatId = listing.boatId;
     const newPrice = listing.price;
-
+    
     if (newBoatId === null || newPrice === null) {
       window.alert("Please Select a Boat and Set a Price");
     } else {
+      if(listingId){
       const newListing = {
-        id: listings.length + 1,
-        boatId: newBoatId,
+        id: listingId,
+        boatId: parseInt(newBoatId),
+        dateListed: "",
+        price: newPrice,
+        renterId: 0,
+      };
+      updateListing(newListing).then(() => history.push("/"));
+    } else {
+      const newListing = {
+        boatId: parseInt(newBoatId),
         dateListed: "",
         price: newPrice,
         renterId: 0,
       };
       addListings(newListing).then(() => history.push("/"));
     }
+  }
   };
 
   return (
@@ -75,7 +83,7 @@ export const ListingForum = () => {
               boats.map((boat) => {
                 return (
                   <label key={boat.id}>
-                    <input type="radio" id="boatId" key={boat.id} required value={listing.boatId} onChange={handleControlledInputChange} />
+                    <input type="radio" id="boatId" key={boat.id} required value={boat.id} onChange={handleControlledInputChange} />
                     {boat.id}
                     <img className="listing__image" src={boat && boat.pictureURL} alt="" style={{height: 250, width: 300 }}></img>
                   </label>
