@@ -34,7 +34,7 @@ export const ListingsProvider = (props) => {
         return fetch(`http://localhost:8088/boatListing/${listingId}`)
             .then(res => res.json())
     }
-
+    
     const updateListing = listing => {
         return fetch(`http://localhost:8088/boatListing/${listing.id}`,{
             method: "PUT",

@@ -34,6 +34,7 @@ export const UserProfile = () => {
         {listings.map((listing) => {
           let thisBoatId = parseInt(listing.boatId);
           let thisBoat = boats.find((boat) => boat.id === thisBoatId);
+          if(parseInt(localStorage.getItem("dd_user")) === thisBoat.owner) {
           return (
             <div
               className="user__listing"
@@ -73,7 +74,7 @@ export const UserProfile = () => {
                 Edit Listing
               </button>
             </div>
-          );
+          ) };
         })}
       </div>
     </section>

@@ -75,6 +75,7 @@ export const ListingForum = () => {
           <div>
             {boats &&
               boats.map((boat) => {
+                if(parseInt(localStorage.getItem("dd_user")) === boat.owner)
                 return (
                   <label key={boat.id}>
                     <input type="radio" id="boatId" key={boat.id} required value={boat.id} onChange={handleControlledInputChange} />

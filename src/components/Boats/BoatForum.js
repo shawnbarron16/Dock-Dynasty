@@ -36,10 +36,11 @@ export const BoatForum = () => {
         } else {
             const newBoat = {
                 id: boats.length + 1,
-                owner: parseInt(localStorage.getItem("gg_user")),
+                owner: parseInt(localStorage.getItem("dd_user")),
                 pictureURL: newPictureURL,
                 description: newDescription,
-                rented: false
+                rented: false,
+                reapiring: false
             }
             addBoats(newBoat)
             .then(() => history.push("/"))
