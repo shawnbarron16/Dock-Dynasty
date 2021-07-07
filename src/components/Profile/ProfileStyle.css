@@ -3,6 +3,11 @@
     margin: 8px
 };
 
+.user__boats {
+    display: flex;
+    margin: 8px
+};
+
 .listing__image {
     max-width: 50px;
     max-height: 50px;
