@@ -11,6 +11,7 @@ import { BoatForum } from "./Boats/BoatForum";
 import { ListingForum } from "./Listings/ListingForum";
 import { UserProfile } from "./Profile/Profile";
 import { UserProvider } from "./Profile/ProfileProvider";
+import { Boats } from "./Boats/Boats";
 
 export const ApplicationViews = () => {
   return (
@@ -39,6 +40,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route path="/EditListings/:listingId(\d+)">
               <ListingForum />
+            </Route>
+            <Route path="/Boats">
+              <Boats />
             </Route>
           </BoatProvider>
         </ListingsProvider>

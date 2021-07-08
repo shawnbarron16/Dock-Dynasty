@@ -5,6 +5,7 @@
 
 .user__boats {
     display: flex;
+    flex-flow: row wrap;
     margin: 8px
 };
 
@@ -16,4 +17,4 @@
 .user__name {
     display: flex;
     justify-content: center;
-}
+};
