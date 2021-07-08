@@ -3,9 +3,9 @@
     flex-flow: column wrap;
     background-color: darkslategrey;
     align-items: center;
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    position: relative;
+    bottom: 0;
 }
 
 .footerBar__item {

@@ -78,7 +78,7 @@ export const UserProfile = () => {
             return (
               <div
                 className="user__listing"
-                key={listing.id}
+                key={`listing--${listing.id}`}
                 id={`listing--${listing.id}`}
                 style={{
                   display: "flex",
