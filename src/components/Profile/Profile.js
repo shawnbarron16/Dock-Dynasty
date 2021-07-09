@@ -8,7 +8,7 @@ import "./ProfileStyle.css";
 export const UserProfile = () => {
   const { getUserById } = useContext(UserContext);
   const [user, setUser] = useState({});
-  const { boats, getBoats } = useContext(BoatContext);
+  const { boats, getBoats, deleteBoat } = useContext(BoatContext);
   const { listings, getListings, deleteListing } = useContext(ListingContext);
   const history = useHistory();
 
@@ -59,8 +59,15 @@ export const UserProfile = () => {
                   style={{ height: 250, width: 300 }}
                 />
                 {boat.description}
+                <button onClick={() => {
+                  let answer = window.confirm("Are You Sure You Want to Delete This Boat?")
+                  if(answer) {
+                    let thisListing = listings.find((listing) => boat.id === listing.boatId)
+                    deleteListing(thisListing.id)
+                    .then(deleteBoat(boat.id))
+                  }}}>Delete Boat</button>
                 <button onClick={() => history.push(`/EditBoat/${boat.id}`)}>
-                  Delete Boat
+                  Edit Boat
                 </button>
               </div>
             );
@@ -78,7 +85,7 @@ export const UserProfile = () => {
             return (
               <div
                 className="user__listing"
-                key={listing.id}
+                key={`listing--${listing.id}`}
                 id={`listing--${listing.id}`}
                 style={{
                   display: "flex",
@@ -103,10 +110,10 @@ export const UserProfile = () => {
                 {thisBoat && thisBoat.price}
                 <button
                   onClick={() =>
-                    deleteListing(listing.id).then(history.push("/"))
+                    deleteListing(listing.id)
                   }
                 >
-                  Delete
+                  Delete Listing
                 </button>
                 <button
                   onClick={() => {

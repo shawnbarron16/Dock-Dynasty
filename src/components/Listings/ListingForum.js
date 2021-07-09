@@ -9,15 +9,18 @@ export const ListingForum = () => {
   const { boats, getBoats } = useContext(BoatContext);
   const history = useHistory();
   const {listingId} = useParams()
-  const [isLoading, setIsLoading] = useState(true);
 
-  /*useEffect(() => {
-    getListings()
-    .then(() => getBoats())
-    .then(() => getListingById(parseInt(listingId)))
-  }, []);
-  */
-
+  const handleTitle = () => {
+    if(listingId) {
+      return(
+        <h2>Edit This listing</h2>
+      )
+    } else {
+      return (
+        <h2>Add a Listing</h2>
+      )
+    }
+  }
 
   const [listing, setListing] = useState({
     id: "",
@@ -41,7 +44,6 @@ export const ListingForum = () => {
     if (newBoatId === null || newPrice === null) {
       window.alert("Please Select a Boat and Set a Price");
     } else {
-      setIsLoading(true)
       if(listingId){
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
@@ -78,7 +80,9 @@ today = mm + '/' + dd + '/' + yyyy;
   return (
     <>
       <form>
-        <h2>Add A Listing</h2>
+        <sectioin>
+          {handleTitle()}
+        </sectioin>
         <fieldset>
           <div>
             <label>Choose A Boat</label>
