@@ -11,7 +11,6 @@ import { BoatForum } from "./Boats/BoatForum";
 import { ListingForum } from "./Listings/ListingForum";
 import { UserProfile } from "./Profile/Profile";
 import { UserProvider } from "./Profile/ProfileProvider";
-import { Boats } from "./Boats/Boats";
 import "./Application-Views.css"
 
 export const ApplicationViews = () => {
@@ -43,8 +42,8 @@ export const ApplicationViews = () => {
             <Route path="/EditListings/:listingId(\d+)">
               <ListingForum />
             </Route>
-            <Route path="/Boats">
-              <Boats />
+            <Route path="/EditBoat/:boatId(\d+)">
+              <BoatForum />
             </Route>
           </BoatProvider>
         </ListingsProvider>

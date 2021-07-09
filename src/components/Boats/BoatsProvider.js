@@ -34,13 +34,13 @@ export const BoatProvider = (props) => {
             .then(res => res.json())
     }
 
-    const updateBoat = boatId => {
-        return fetch(`http://localhost:8088/boats/${boatId}`, {
+    const updateBoat = boat => {
+        return fetch(`http://localhost:8088/boats/${boat.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(boatId)
+            body:JSON.stringify(boat)
         })
         .then(getBoats)
     }
